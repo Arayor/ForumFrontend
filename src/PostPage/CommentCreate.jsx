@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
@@ -16,18 +16,15 @@ function CommentCreate(props) {
     const [submitted, setSubmitted] = useState(false);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const { content } = inputs;
-    // const registerPost = useSelector(state => state.authentication.loggingIn);
     const dispatch = useDispatch();
-    const location = useLocation();
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
         setSubmitted(true);
         if (content) {
-            // get return url from location state or default to home page
-            await dispatch(postActions.registerComment({ content, post: props.idPost }));
+            dispatch(postActions.registerComment({ content, post: props.idPost }))
+            setEditorState(EditorState.createEmpty())
         }
-        dispatch(postActions.getComments(props.idPost));
     }
 
     const handleEditor = (value) => {

@@ -46,12 +46,11 @@ function PostPage() {
                                     </h5>
                                 </Link>
                             </div>
-                            <div className="card-footer">Comments()</div>
+                            {/* <div className="card-footer">Comments()</div> */}
                         </div>
                     )}
                 </section>
             }
-
         </div>
     );
 }

@@ -91,9 +91,8 @@ function registerComment(comment) {
             .then(
                 post => {
                     dispatch(success());
-                   // router.push({ pathname: "/empty" });
-                   // router.replace({ pathname: "/post/"+comment.post });
                     dispatch(alertActions.success('Create comment successful'));
+                    dispatch(getComments(comment.post))
 
                 },
                 error => {
@@ -108,19 +107,3 @@ function registerComment(comment) {
     function failure(error) { return { type: postConstants.REGISTER_FAILURE, error } }
 }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
-// function _delete(id) {
-//     return dispatch => {
-//         dispatch(request(id));
-
-//         userService.delete(id)
-//             .then(
-//                 user => dispatch(success(id)),
-//                 error => dispatch(failure(id, error.toString()))
-//             );
-//     };
-
-//     function request(id) { return { type: userConstants.DELETE_REQUEST, id } }
-//     function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
-//     function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
-// }

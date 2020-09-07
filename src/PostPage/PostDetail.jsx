@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import TimeAgo from 'react-timeago'
 import { postActions } from '../_actions';
@@ -14,8 +13,6 @@ function PostDetail(props) {
     useEffect(() => {
         dispatch(postActions.getById(idPost));
         dispatch(postActions.getComments(idPost));
-
-
     }, []);
 
     return (
@@ -48,7 +45,6 @@ function PostDetail(props) {
                                 <TimeAgo date={comment.created_at} />
                             </div>
                             <div className="card-body">
-
                                 {ReactHtmlParser(comment.content)}
                             </div>
                         </div>

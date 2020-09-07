@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
@@ -17,9 +17,7 @@ function PostCreate() {
     const [submitted, setSubmitted] = useState(false);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const { title, content } = inputs;
-    // const registerPost = useSelector(state => state.authentication.loggingIn);
     const dispatch = useDispatch();
-    const location = useLocation();
 
 
     function handleChange(e) {
@@ -32,8 +30,6 @@ function PostCreate() {
 
         setSubmitted(true);
         if (title && content) {
-            // get return url from location state or default to home page
-           // const { from } = location.state || { from: { pathname: "/" } };
             dispatch(postActions.register({title, content}));
         }
     }
@@ -44,7 +40,7 @@ function PostCreate() {
     }
 
     return (
-        <div className="col-lg-8 offset-lg-2">
+        <div className="">
             <h2>Create Post</h2>
             <form name="form" onSubmit={handleSubmit}>
                 <div className="form-group">
